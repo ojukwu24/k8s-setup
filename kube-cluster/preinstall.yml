@@ -1,0 +1,15 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Flush iptables 
+      shell: iptables -P FORWARD ACCEPT
+
+    - name: Disable swap
+      shell: swapoff -a
+
+    - name: Remove swap config from /etc/fstab
+      lineinfile:
+        path: /etc/fstab
+        regexp: 'swap'
+        state: absent
+        backup: 'yes'

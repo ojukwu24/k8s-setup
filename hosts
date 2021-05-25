@@ -1,0 +1,7 @@
+[masters]
+rc-k8s2-mst1.local
+
+[workers]
+rc-k8s1-wkr1.local
+rc-k8s2-wkr1.local
+rc-k8s3-wkr1.local
