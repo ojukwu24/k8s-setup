@@ -1,16 +1,13 @@
 - hosts:  all
   become: yes
   tasks:
-    - name: create the 'coure' Admin
-      user: name=coure append=yes state=present createhome=yes shell=/bin/bash
-
-    - name: all 'coure' to have passwordless sudo
+    - name: all 'control' to have passwordless sudo
       lineinfile:
         dest: /etc/sudoers
-        line: 'coure ALL=(ALL) NOPASSWD: ALL'
+        line: 'control ALL=(ALL) NOPASSWD: ALL'
         validate: 'visudo -cf %s'
 
-    - name: set up authorized keys for the coure Admin'
-      authorized_key: user=coure key="{{item}}"
+    - name: set up authorized keys for the control'
+      authorized_key: user=control key="{{item}}"
       with_file:
         - ~/.ssh/id_rsa.pub
