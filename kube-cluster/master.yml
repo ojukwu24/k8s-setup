@@ -20,7 +20,7 @@
         src: /etc/kubernetes/admin.conf
         dest: /home/{{user}}/.kube/config
         remote_src: yes
-        owner: {{"user"}}
+        owner: "{{user}}"
 
     - name: install Pod network
       become: yes
