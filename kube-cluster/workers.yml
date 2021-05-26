@@ -1,4 +1,4 @@
-- hosts: masters
+- hosts: rc-k8s2-mst1.local
   become: yes
   gather_facts: false
   tasks:
@@ -15,7 +15,7 @@
   become: yes
   tasks:
     - name: join cluster
-      shell: "{{ hostvars['master'].join_command }} >> node_joined.txt"
+      shell: "{{ hostvars['rc-k8s2-mst1.local'].join_command }} >> node_joined.txt"
       args:
         chdir: $HOME
         creates: node_joined.txt
