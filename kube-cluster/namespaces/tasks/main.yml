@@ -12,18 +12,24 @@
         - namespace-staging.json
 
     - name: Apply dev namespace
+      become: yes
+      become_user: control
       shell:  "kubectl create -f /home/control/namespace-dev.json >> namespace_init.log"
       args:
         chdir:  $HOME
         creates:  namespace_init.log
 
     - name: Apply staging namespace
+      become: yes
+      become_user: control
       shell:  "kubectl create -f /home/control/namespace-staging.json >> namespace_init.log"
       args:
         chdir:  $HOME
         creates:  namespace_init.log
 
     - name: Apply monitoring namespace
+      become: yes
+      become_user: control
       shell:  "kubectl create -f /home/control/namespace-monitoring.json >> namespace_init.log"
       args:
         chdir:  $HOME
