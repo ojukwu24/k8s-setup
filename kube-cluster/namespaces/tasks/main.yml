@@ -5,7 +5,7 @@
     - name: Move namespaces JSON files
       template:
         src:  "{{item}}"
-        dest: "/home/{{user}}/{{item}}"
+        dest: "/home/control/{{item}}"
       loop:
         - namespace-dev.json
         - namespace-monitoring.json
