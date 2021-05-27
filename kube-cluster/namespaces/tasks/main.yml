@@ -1,0 +1,31 @@
+- hosts: masters
+  become: yes
+  gather_facts: false
+  tasks: 
+    - name: Move namespaces JSON files
+      template:
+        src:  "{{item}}"
+        dest: "/home/{{user}}/{{item}}"
+      loop:
+        - namespace-dev.json
+        - namespace-monitoring.json
+        - namespace-staging.json
+
+    - name: Apply dev namespace
+      shell:  "kubectl create -f /home/{{user}}/namespace-dev.json >> namespace_init.log"
+      args:
+        chdir:  $HOME
+        creates:  namespace_init.log
+
+    - name: Apply staging namespace
+      shell:  "kubectl create -f /home/{{user}}/namespace-staging.json >> namespace_init.log"
+      args:
+        chdir:  $HOME
+        creates:  namespace_init.log
+
+    - name: Apply monitoring namespace
+      shell:  "kubectl create -f /home/{{user}}/namespace-monitoring.json >> namespace_init.log"
+      args:
+        chdir:  $HOME
+        creates:  namespace_init.log
+
