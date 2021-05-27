@@ -12,19 +12,19 @@
         - namespace-staging.json
 
     - name: Apply dev namespace
-      shell:  "kubectl create -f /home/{{user}}/namespace-dev.json >> namespace_init.log"
+      shell:  "kubectl create -f /home/control/namespace-dev.json >> namespace_init.log"
       args:
         chdir:  $HOME
         creates:  namespace_init.log
 
     - name: Apply staging namespace
-      shell:  "kubectl create -f /home/{{user}}/namespace-staging.json >> namespace_init.log"
+      shell:  "kubectl create -f /home/control/namespace-staging.json >> namespace_init.log"
       args:
         chdir:  $HOME
         creates:  namespace_init.log
 
     - name: Apply monitoring namespace
-      shell:  "kubectl create -f /home/{{user}}/namespace-monitoring.json >> namespace_init.log"
+      shell:  "kubectl create -f /home/control/namespace-monitoring.json >> namespace_init.log"
       args:
         chdir:  $HOME
         creates:  namespace_init.log
