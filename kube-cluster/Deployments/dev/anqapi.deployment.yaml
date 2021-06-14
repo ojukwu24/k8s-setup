@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devanq-api-deployment
+  labels:
+    app: devanq-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devanq-api
+  template:
+    metadata:
+      labels:
+        app: devanq-api
+    spec:
+      containers:
+        - image: reg.coure-tech.com:5000/coure-anq-api:#{dev-image-tag}#
+          imagePullPolicy: Always
+          name: anq-apiservice
+          ports:
+          - containerPort: 80
+            protocol: TCP
+      imagePullSecrets:
+        - name: docker-creds
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: devanq-api-service
+spec:
+  type: ClusterIP
+  selector:
+    app: devanq-api
+  ports:
+  - port: 4001
+    targetPort: 80
+    name: http
+    protocol: TCP
